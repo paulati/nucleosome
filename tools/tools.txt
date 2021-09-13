@@ -1,0 +1,33 @@
+fastqc
+Soft: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+Manual: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/
+
+cutadapt
+Soft: https://cutadapt.readthedocs.io/en/stable/installation.html
+Manual: https://cutadapt.readthedocs.io/en/stable/guide.html
+Publication: https://doi.org/10.14806/ej.17.1.200
+
+bowtie2
+Soft: https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.4.4/
+Manual: http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml
+Publication: https://doi.org/10.1038/nmeth.1923
+
+hisat2
+Soft: http://daehwankimlab.github.io/hisat2/download/
+Manual: http://daehwankimlab.github.io/hisat2/manual/
+Publication: https://doi.org/10.1038/s41587-019-0201-4
+
+utrme
+Soft: https://github.com/sradiouy/UTRme
+Manual:https://github.com/sradiouy/UTRme
+Publication: https://doi.org/10.3389/fgene.2018.00671
+
+plot2DO
+Soft: https://github.com/rchereji/plot2DO
+Manual: https://github.com/rchereji/plot2DO
+Publication: https://doi.org/10.1007/978-1-0716-0301-7_5
+
+generate_BW_from_BAM
+Soft: 
+Author: https://github.com/rchereji
+

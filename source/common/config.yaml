@@ -1,0 +1,65 @@
+qc_out_base_path: /u01/home/paula/2020/nucleosome_github/output/qc_output
+alignment_summary_out_base_path: /u01/home/paula/2020/nucleosome_github/output/alignment_summary 
+utrme_file_name: Corrida_UTRme-Epi_Li_46-5-best-score.bed
+
+cores: 8
+
+genomes: 
+  all:
+    genome_base_path: /u03/paula/2020/amazon_jocampo/s3/genome
+    file_name: TriTrypDB-46_TcruziCLBrenerAll_Genome.fasta
+    index_base_path: /u03/paula/2021/josefina/MNase/genome/index
+    alignment_base_path: /u03/paula/2021/josefina/MNase/alignments
+  es_noEs:
+    genome_base_path: /u03/paula/2020/amazon_jocampo/s3/genome  
+    file_name: TriTrypDB-46_TcruziCLBrenerEsmeraldo-Non-Esmeraldo-like_Genome.fasta
+    index_base_path: /u03/paula/2021/josefina/MNase/genome/index
+    alignment_base_path: /u03/paula/2021/josefina/MNase/alignments
+  es:
+    genome_base_path: /u03/paula/2020/amazon_jocampo/s3/genome  
+    file_name: TriTrypDB-46_TcruziCLBrenerEsmeraldo-like_Genome.fasta
+    index_base_path: /u03/paula/2021/josefina/MNase/genome/index
+    alignment_base_path: /u03/paula/2021/josefina/MNase/alignments
+
+replicates:
+  repl1:
+    repl_file_name:
+      r1: CLJ_1_70U_comb_R1.fastq.gz
+      r2: CLJ_1_70U_comb_R2.fastq.gz
+    repl_file_md5sum:
+      r1: edd9530b232da348dfcd0ca7c3bd3e60
+      r2: 16ce07f628eab0d6e3bb4145b34636fd
+    repl_alignment_file_name: CLJ_1_70U_comb
+    raw:
+      data_base_path: /u03/paula/2020/amazon_jocampo/s3/MNase/reads/raw
+      overrepresented_seqs_base_path: /u01/home/paula/2020/nucleosome_github/data
+      overrepresented_seqs_file: CLJ_1_70U_comb_R1_overrepresented.fasta
+    clean:
+      data_base_path: /u03/paula/2021/josefina/MNase/reads/clean                      
+  repl2:
+    repl_file_name:
+      r1: CLJ_2_35U_comb_R1.fastq.gz
+      r2: CLJ_2_35U_comb_R2.fastq.gz
+    repl_file_md5sum:
+      r1: a9795c9a069e1135e979486046a6cb70
+      r2: bcb31669500c52bb336debcf43ec16b1
+    repl_alignment_file_name: CLJ_2_35U_comb
+    raw:
+      data_base_path: /u03/paula/2020/amazon_jocampo/s3/MNase/reads/raw
+      overrepresented_seqs_base_path: /u01/home/paula/2020/nucleosome_github/data        
+      overrepresented_seqs_file: CLJ_2_35U_comb_R1_overrepresented.fasta
+    clean:
+      data_base_path: /u03/paula/2021/josefina/MNase/reads/clean
+
+heatmaps:
+  plot2DO_application_paths_output: /home/paula/2020/nucleosome_github/output/plots
+  plot2DO_option_type: occ
+  plot2DO_option_minLength: 90
+  plot2DO_option_maxLength: 180
+  plot2DO_option_genome: TcruziCLBrenerEsmeraldo
+  plot2DO_option_align: fivePrime
+
+bigwigs:
+  option_type: occ
+  option_minLength: 90
+  option_maxLength: 180
