@@ -28,6 +28,6 @@ Manual: https://github.com/rchereji/plot2DO
 Publication: https://doi.org/10.1007/978-1-0716-0301-7_5
 
 generate_BW_from_BAM
-Soft: 
+Soft: https://github.com/paulati/nucleosome/blob/master/tools/generate_BW_from_BAM.R
 Author: https://github.com/rchereji
 
