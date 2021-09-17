@@ -1,8 +1,10 @@
 ## Experimental and Bioinformatic upgrade for genome-wide mapping of nucleosomes in Trypanosoma cruzi
 
-These scripts require already installed software listed <a href="https://github.com/paulati/nucleosome/blob/master/tools/tools.txt">here</a>
+<a href="https://doi.org/10.1101/2021.07.02.450927" target="_blank">bioRxiv pre-print</a>
 
-Custom configuration values should be set <a href="https://github.com/paulati/nucleosome/blob/master/source/common/config.yaml">here</a>
+These scripts require already installed software listed <a href="https://github.com/paulati/nucleosome/blob/master/tools/tools.txt" target="_blank">here</a>
+
+Custom configuration values should be set <a href="https://github.com/paulati/nucleosome/blob/master/source/common/config.yaml" target="_blank">here</a>
 
 ### Repository outline
 
