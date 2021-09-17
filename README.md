@@ -22,3 +22,11 @@ The <code>data</code> directory contains
 	<li>overrepresented sequences in analyzed samples in fasta format</li>	
 	<li>UTRme output defining positions for value of plot2DO --sites</li>
 </ul>  
+The <code>output</code> directory contains
+<ul>
+	<li><code>qc_output</code> - fastqc output for each sample</li>	
+	<li><code>alignment</code> - summary of alignments for each strategy (bowtie2, hisat2) and each sample</li>	
+	<li><code>alignment_summary</code> - csv files for consolidated <code>alignment</code> data</li>	
+	<li><code>plots</code> - plot2DO output for each strategy (bowtie2, hisat2) and each sample</li>	
+</ul>  
+
