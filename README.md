@@ -30,3 +30,24 @@ The <code>output</code> directory contains
 	<li><code>plots</code> - plot2DO output for each strategy (bowtie2, hisat2) and each sample</li>	
 </ul>  
 
+### Pipeline
+
+Available steps: 
+<ul>
+   <li>preprocess</li>, 
+   <li>align</li>, 
+   <li>convert_to_bam</li>,
+   <li>plot</li>, 
+   <li>summary_tables</li>, 
+   <li>convert_to_bigwig</li>
+</ul>
+
+#### Suggested Pipeline
+
+1. main('preprocess')
+2. main('align')
+3. main('summary_tables')
+4. main('convert_to_bam')
+5. main('plot')
+6. main('convert_to_bigwig')
+
