@@ -34,20 +34,20 @@ The <code>output</code> directory contains
 
 Available steps: 
 <ul>
-   <li>preprocess</li>, 
-   <li>align</li>, 
-   <li>convert_to_bam</li>,
-   <li>plot</li>, 
-   <li>summary_tables</li>, 
+   <li>preprocess</li>
+   <li>align</li>
+   <li>convert_to_bam</li>
+   <li>plot</li>
+   <li>summary_tables</li>
    <li>convert_to_bigwig</li>
 </ul>
 
 #### Suggested Pipeline
 
-1. main('preprocess')
-2. main('align')
-3. main('summary_tables')
-4. main('convert_to_bam')
-5. main('plot')
-6. main('convert_to_bigwig')
+1. <code>main('preprocess')</code>
+2. <code>main('align')</code>
+3. <code>main('summary_tables')</code>
+4. <code>main('convert_to_bam')</code>
+5. <code>main('plot')</code>
+6. <code>main('convert_to_bigwig')</code>
 
