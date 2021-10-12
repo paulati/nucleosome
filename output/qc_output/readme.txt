@@ -1,4 +1,4 @@
-## fastqc output
+##fastqc output
 
 repl1 raw
 
