@@ -1,3 +1,5 @@
+## fastqc output
+
 repl1 raw
 
 https://htmlpreview.github.io/?https://github.com/paulati/nucleosome/blob/master/output/qc_output/repl1/raw/CLJ_1_70U_comb_R1_fastqc.html
