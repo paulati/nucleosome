@@ -153,7 +153,10 @@ main <- function(step_name) {
 #   summary_tables, 
 #   convert_to_bigwig
 
-#main('preprocess')
+# main("build_indexes")
+# main('preprocess')
+#main("align")
+# main("convert_to_bam")
 main('plot')
 #main('summary_tables')
 #main('convert_to_bigwig')

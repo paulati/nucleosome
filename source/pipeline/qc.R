@@ -52,29 +52,43 @@ clean_repetitive_sequences <- function(id) {
   remove_param <- paste("-m", 10, sep = " ")
   
   overrepresented_seqs_file_path <- get_overrepresented_seqs_file_path(id)
-  overrepresented_param <- paste0("-a file:", overrepresented_seqs_file_path)
   
   output_paths <- get_clean_data_base_path(id)
   
-  output_paths_param <- paste("-o", output_paths$r1, "-p", output_paths$r2, sep = " ")
-  
   input_paths <- get_reads_path(id)
-  input_paths_param <- paste(input_paths$r1, input_paths$r2, sep = " ")
   
-  command <- paste("cutadapt", 
-                   cores_param, 
-                   remove_param, 
-                   overrepresented_param,
-                   output_paths_param,
-                   input_paths_param,
-                   sep=" ")
+  if(length(overrepresented_seqs_file_path) > 0) {
+    
+    overrepresented_param <- paste0("-a file:", overrepresented_seqs_file_path)
+    
+    output_paths_param <- paste("-o", output_paths$r1, "-p", output_paths$r2, sep = " ")
+    
+    input_paths_param <- paste(input_paths$r1, input_paths$r2, sep = " ")
+    
+    command <- paste("cutadapt", 
+                     cores_param, 
+                     remove_param, 
+                     overrepresented_param,
+                     output_paths_param,
+                     input_paths_param,
+                     sep=" ")
+    
+    print(command)
+    
+    system(command, intern = FALSE,
+           ignore.stdout = FALSE, ignore.stderr = FALSE,
+           wait = TRUE, input = NULL, show.output.on.console = TRUE,
+           timeout = 0)
+    
+  } else {
+    
+    print("overrepresented seqs file not provided")
+    file.copy(input_paths$r1, output_paths$r1)
+    file.copy(input_paths$r2, output_paths$r2)
+    
+  }
   
-  print(command)
   
-  system(command, intern = FALSE,
-         ignore.stdout = FALSE, ignore.stderr = FALSE,
-         wait = TRUE, input = NULL, show.output.on.console = TRUE,
-         timeout = 0)
   
 }
 

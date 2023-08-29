@@ -56,6 +56,7 @@ get_clean_data_base_path <- function(id) {
 
 get_genome_file_path <- function(genome_id) {
 
+  genomes_base_path <- genomes[[genome_id]]$genome_base_path
   result <- file.path(genomes_base_path, genomes[[genome_id]]$file_name)
   
   return(result)

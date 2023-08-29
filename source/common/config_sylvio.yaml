@@ -1,0 +1,65 @@
+qc_out_base_path: /u03/paula/2023/josefina/sylvio/output/qc_output
+alignment_summary_out_base_path: /u03/paula/2023/josefina/sylvio/output/alignment_summary 
+utrme_file_name: UTRme-Run_houston_Sylvio2-5-best-score.bed
+
+cores: 8
+
+genomes: 
+  all:
+    genome_base_path: /u03/paula/2023/josefina/sylvio/genome
+    file_name: TriTrypDB-64_TcruziSylvioX10-1_Genome.fasta
+    index_base_path: /u03/paula/2023/josefina/sylvio/genome/index
+    alignment_base_path: /u03/paula/2023/josefina/sylvio/alignments
+  # es_noEs:
+  #   genome_base_path: /u03/paula/2020/amazon_jocampo/s3/genome  
+  #   file_name: TriTrypDB-46_TcruziCLBrenerEsmeraldo-Non-Esmeraldo-like_Genome.fasta
+  #   index_base_path: /u03/paula/2021/josefina/MNase/genome/index
+  #   alignment_base_path: /u03/paula/2021/josefina/MNase/alignments
+  # es:
+  #   genome_base_path: /u03/paula/2020/amazon_jocampo/s3/genome  
+  #   file_name: TriTrypDB-46_TcruziCLBrenerEsmeraldo-like_Genome.fasta
+  #   index_base_path: /u03/paula/2021/josefina/MNase/genome/index
+  #   alignment_base_path: /u03/paula/2021/josefina/MNase/alignments
+
+replicates:
+  repl1:
+    repl_file_name:
+      r1: SylJ_1_70U_R1.fastq.gz
+      r2: SylJ_1_70U_R2.fastq.gz
+    repl_file_md5sum:
+      r1: f9a4f37c418cb3c291c161a0547af94a
+      r2: 7896075e522dbed3d45385d4ae628250
+    repl_alignment_file_name: SylJ_1_70U
+    raw:
+      data_base_path: /u03/paula/2023/josefina/sylvio/MNase/reads/raw
+      overrepresented_seqs_base_path: /u01/home/paula/2023/josefina/nucleosome/data
+      overrepresented_seqs_file: SylJ_1_70U_R1_overrepresented.fasta
+    clean:
+      data_base_path: /u03/paula/2023/josefina/sylvio/MNase/reads/clean
+  repl2:
+    repl_file_name:
+      r1: SylJ_2_35U_R1.fastq.gz
+      r2: SylJ_2_35U_R2.fastq.gz
+    repl_file_md5sum:
+      r1: a4bee0ac54b05ee76e663ea32a4f8997
+      r2: 4e8d16203cb54b0a48cc04ad7a0be49a
+    repl_alignment_file_name: SylJ_2_35U
+    raw:
+      data_base_path: /u03/paula/2023/josefina/sylvio/MNase/reads/raw
+      overrepresented_seqs_base_path: 
+      overrepresented_seqs_file: 
+    clean:
+      data_base_path: /u03/paula/2023/josefina/sylvio/MNase/reads/clean
+
+heatmaps:
+  plot2DO_application_paths_output: /u01/home/paula/2023/josefina/nucleosome/output/plots/sylvio
+  plot2DO_option_type: occ
+  plot2DO_option_minLength: 90
+  plot2DO_option_maxLength: 180
+  plot2DO_option_genome: Sylvio
+  plot2DO_option_align: fivePrime
+
+bigwigs:
+  option_type: occ
+  option_minLength: 90
+  option_maxLength: 180

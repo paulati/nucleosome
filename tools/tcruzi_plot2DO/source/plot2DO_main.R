@@ -28,7 +28,11 @@ Main <- function(command_line_args=NA)
   
   outputFolderPath <- CreateOutputFolders(params$plotType, params$referencePointsBed, params$reference, params$siteLabel)
   
-  CalculatePlotData(params, reads, referenceGRanges)
+  # reads length:
+  CalculatePlotData(params, reads, referenceGRanges, genes_analysis = FALSE)
+  
+  # genes:
+  CalculatePlotData(params, reads, referenceGRanges, genes_analysis = TRUE)
 
   plot <- PlotFigure(params)
     

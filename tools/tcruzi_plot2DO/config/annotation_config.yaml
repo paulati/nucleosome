@@ -1,5 +1,56 @@
 
 annotations:
+  Sylvio:
+    chromosome_size: 
+      filter:
+        - TcX10_chr1
+        - TcX10_chr2
+        - TcX10_chr3
+        - TcX10_chr4
+        - TcX10_chr5
+        - TcX10_chr6
+        - TcX10_chr7
+        - TcX10_chr8
+        - TcX10_chr9
+        - TcX10_chr10
+        - TcX10_chr11
+        - TcX10_chr12
+        - TcX10_chr13
+        - TcX10_chr14
+        - TcX10_chr15
+        - TcX10_chr16
+        - TcX10_chr18
+        - TcX10_chr19
+        - TcX10_chr20
+        - TcX10_chr21
+        - TcX10_chr22
+        - TcX10_chr23
+        - TcX10_chr24
+        - TcX10_chr25
+        - TcX10_chr26
+        - TcX10_chr27
+        - TcX10_chr28
+        - TcX10_chr29
+        - TcX10_chr30
+        - TcX10_chr31
+        - TcX10_chr32
+        - TcX10_chr33
+        - TcX10_chr34
+        - TcX10_chr35
+        - TcX10_chr36
+        - TcX10_chr37
+        - TcX10_chr38
+        - TcX10_chr39
+        - TcX10_chr40
+        - TcX10_chr41
+        - TcX10_chr42
+        - TcX10_chr43
+        - TcX10_chr44
+        - TcX10_chr45
+        - TcX10_chr46
+        - TcX10_chr47
+    file:
+      path: TriTrypDB-64_TcruziSylvioX10-1.gff
   TcruziCLBrenerEsmeraldo:
     chromosome_size: 
       filter:

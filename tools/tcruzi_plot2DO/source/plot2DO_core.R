@@ -28,6 +28,80 @@ if(noCores > 1) {
   noCores <- min(noCores - 1, 8) # Do not use more than 8 cores (to prevent memory issues)
 }
 
+# reads <- resized_reads
+# coverageWeight
+# referenceGRanges, 
+# referenceGenome <- params$genome
+
+ComputeCoverageMatrixGenes <- function(reads, coverageWeight, 
+                                       referenceGRanges, referenceGenome)
+{
+  # For human and mouse data, limit the number of cores to 2 (increase this # according to the available memory that is available on your system)
+  if (referenceGenome %in% c('mm9', 'mm10', 'hg18', 'hg19', 'hg38')){
+    noCores = min(c(2, noCores)) 
+  }
+  
+  occ <- coverage(reads)
+  chrLabel <- seqlevels(occ)
+  noChr <- length(chrLabel)
+  
+  registerDoParallel(cores=noCores)
+  
+  
+  #referenceGRanges_subset <- referenceGRanges[seq(1, 15)]
+  #referenceGRanges <- referenceGRanges_subset
+  
+  # For each fragment size, compute the corresponding coverage/occupancy
+  #occMatrixTranspose <- foreach(l=lMin:lMax, .combine='cbind') %dopar% {
+  occMatrixTranspose <- foreach(region_index = seq(1, length(referenceGRanges)), 
+                                .export=c("AlignRegionsTranspose"), 
+                                .packages=c('GenomicRanges', 'pracma'), 
+                                .combine='cbind') %dopar% {
+                                  
+                                  # Keep only the reads with the specific length l
+                                  #goodReadsInd <- (readLength == l)
+                                  #goodReads <- reads[goodReadsInd]
+                                  
+                                  gene_region <- referenceGRanges[region_index]   
+                                  # TODO: ver si esta bien considerar que un gen es un registro de los utrme
+                                  # Keep only the reads within the specified region
+                                  goodReadsInd <- findOverlaps(reads, gene_region, 
+                                                               type = "within", 
+                                                               ignore.strand = FALSE) 
+                                  goodReads <- reads[queryHits(goodReadsInd)]
+                                  
+                                  #chr_name <- unique(seqnames(goodReads))
+                                  
+                                  # Compute average occupancy
+                                  occ <- coverage(goodReads, weight = coverageWeight)
+                                  
+                                  #occ_region <- occ[[chr_name]]
+                                  
+                                  alignedRegionsTranspose <- AlignRegionsTranspose(occ, referenceGRanges)
+                                  
+                                  # mean by gene (or utr):
+                                  # sort_by <- colMeans(alignedRegionsTranspose) 
+                                  
+                                  # NO: mean by position:
+                                  # rowMeans(alignedRegionsTranspose)
+                                  alignedRegionsTranspose[, region_index]
+                                }
+  occMatrix <- t(occMatrixTranspose)
+  rownames(occMatrix) <- c()
+  
+  stopImplicitCluster()
+  #registerDoSEQ()
+  
+  # sort by mean gene occupancy:
+  gene_mean_occ <- rowMeans(occMatrix)
+  order_indexes <- order(gene_mean_occ)
+  result <- occMatrix[order_indexes, ]
+  
+  return(result)
+}
+
+
+
 # Parallelized version, much faster (~100x faster on my macbook pro)
 ComputeCoverageMatrix <- function(lMin, lMax, beforeRef, afterRef, reads, 
                                   coverageWeight, referenceGRanges, readLength, referenceGenome)
@@ -45,7 +119,10 @@ ComputeCoverageMatrix <- function(lMin, lMax, beforeRef, afterRef, reads,
   
   # For each fragment size, compute the corresponding coverage/occupancy
   #occMatrixTranspose <- foreach(l=lMin:lMax, .combine='cbind') %dopar% {
-  occMatrixTranspose <- foreach(l=lMin:lMax, .export=c("AlignRegionsTranspose"), .packages=c('GenomicRanges', 'pracma'), .combine='cbind') %dopar% {
+  occMatrixTranspose <- foreach(l=lMin:lMax, 
+                                .export=c("AlignRegionsTranspose"), 
+                                .packages=c('GenomicRanges', 'pracma'), 
+                                .combine='cbind') %dopar% {
     # Keep only the reads with the specific length l
     goodReadsInd <- (readLength == l)
     goodReads <- reads[goodReadsInd]
@@ -122,6 +199,8 @@ ConstructReferenceGRanges <- function(optSites, annotat, selectedReference, befo
     seqlevelsStyle(sites) <- 'Ensembl'
   } else if (genome == 'TcruziCLBrenerEsmeraldo'){ 
     # do nothing or check tritryp style
+  } else if (genome == 'Sylvio'){ 
+    # do nothing or check tritryp style
   } else {
     # Make sure the chromosome names are following the 'UCSC' convention
     seqlevelsStyle(sites) <- 'UCSC'
@@ -160,8 +239,7 @@ ConstructReferenceGRanges <- function(optSites, annotat, selectedReference, befo
   
 }
 
-
-CalculatePlotData <- function(params, reads, referenceGRanges) {
+CalculatePlotData <- function(params, reads, referenceGRanges, genes_analysis = FALSE) {
   
   # Compute the histogram
   readLength <- width(reads) 
@@ -178,12 +256,30 @@ CalculatePlotData <- function(params, reads, referenceGRanges) {
   
   coverageWeight <- ComputeNormalizationFactors(resized_reads)
   
-  occMatrix <- ComputeCoverageMatrix(params$lMin, params$lMax, params$beforeRef, params$afterRef, 
-                         resized_reads, coverageWeight, referenceGRanges, readLength, params$genome)
-  
   outputFilePath <- GetOutputMatrixFilePath(params$plotType, params$referencePointsBed, 
                                             params$reference, params$siteLabel, 
                                             params$lMin, params$lMax, params$sampleName)
+  
+  if (genes_analysis) {
+    occMatrix <- ComputeCoverageMatrixGenes(resized_reads, 
+                                            coverageWeight, referenceGRanges, 
+                                            params$genome)
+    
+    genes_out_base_path <- dirname(outputFilePath)
+    genes_file_name <- basename(outputFilePath)
+    genes_file_name <- paste0('genes_', genes_file_name)
+    outputFilePath <- file.path(genes_out_base_path, genes_file_name)
+    
+  } else {
+    occMatrix <- ComputeCoverageMatrix(params$lMin, params$lMax, 
+                                       params$beforeRef, params$afterRef, 
+                                       resized_reads, coverageWeight, 
+                                       referenceGRanges, readLength, 
+                                       params$genome)
+    
+  }
+  
+  print(outputFilePath)
   
   # Parameters to be saved:
   lMin <- params$lMin

@@ -76,6 +76,9 @@ BuildReadsGRangesFromBAM <- function(bamFilename, genome, annotations){
   } else if(genome == 'TcruziCLBrenerEsmeraldo'){
     # do nothing 
     # check tritryp?
+  } else if(genome == 'Sylvio'){
+    # do nothing 
+    # check tritryp?
   } else {
     # Make sure the chromosome names are following the 'UCSC' convention
     seqlevelsStyle(reads) <- 'UCSC'
@@ -328,7 +331,7 @@ GetAnnotations <- function(genome) {
       tmp <- read.csv(annotationsFilePath, header=FALSE, stringsAsFactors=FALSE, 
                       comment.char = '#', sep = '\t')
       # todo: revisar sentido biologico. gene or CDS 
-      gene_mask <- tmp[, 3] == 'gene'
+      gene_mask <- tmp[, 3] == 'gene' | tmp[, 3] == 'protein_coding_gene'
       annotations_table <- tmp[gene_mask, c(1, 4, 5, 7)]
       colnames(annotations_table) <- c('chr', 'start', 'end', 'strand')
       
