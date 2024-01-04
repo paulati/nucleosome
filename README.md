@@ -1,6 +1,8 @@
-## Experimental and Bioinformatic upgrade for genome-wide mapping of nucleosomes in Trypanosoma cruzi
+## Improving genome-wide mapping of nucleosomes in <i>Trypanosome cruzi</i>
 
 <a href="https://doi.org/10.1101/2021.07.02.450927" target="_blank">bioRxiv pre-print</a>
+<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0293809" target="_blank">paper</a>
+
 
 These scripts require already installed software listed <a href="https://github.com/paulati/nucleosome/blob/master/tools/tools.txt" target="_blank">here</a>
 
